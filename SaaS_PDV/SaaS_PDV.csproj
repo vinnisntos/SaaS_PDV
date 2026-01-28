@@ -35,4 +35,9 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+
 </Project>

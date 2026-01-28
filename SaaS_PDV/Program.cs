@@ -12,7 +12,7 @@ namespace SaaS_PDV
             SaaS_PDV.Data.DbInitializer.Seed();
 
             ApplicationConfiguration.Initialize();
-            Application.Run(new Form1());
+            Application.Run(new FrmSplash());
         }
     }
 }
