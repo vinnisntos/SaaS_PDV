@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SaaS_PDV.Core/SaaS_PDV.Core.csproj" />
+  <Project Path="SaaS_PDV.UI/SaaS_PDV.UI.csproj" />
+</Solution>
