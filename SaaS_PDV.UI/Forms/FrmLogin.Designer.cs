@@ -153,6 +153,7 @@
             // 
             // btnEntrar
             // 
+            btnEntrar.Animated = true;
             btnEntrar.BorderRadius = 8;
             btnEntrar.CustomizableEdges = customizableEdges1;
             btnEntrar.DisabledState.BorderColor = Color.DarkGray;
@@ -169,6 +170,7 @@
             btnEntrar.TabIndex = 6;
             btnEntrar.Text = "Entrar";
             btnEntrar.TextOffset = new Point(2, 0);
+            btnEntrar.Click += btnEntrar_Click;
             // 
             // guna2HtmlLabel1
             // 

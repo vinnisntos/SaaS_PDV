@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -38,6 +39,33 @@ namespace SaaS_PDV.UI.Forms
         private void guna2Panel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnEntrar_Click(object sender, EventArgs e)
+        {
+            string usuario = txtUsuario.Text;
+            string senha = txtSenha.Text;
+
+            // validação de campos vazios
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(senha))
+            {
+                MessageBox.Show("Por favor, preencha todos os campos.", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Simulação de autenticação (entrada SQL deve ser implementada aqui)
+            if (usuario == "admin" && senha == "1234")
+            {
+                MainDashboard telaPrincipal = new MainDashboard();
+                telaPrincipal.Show();
+
+                this.Hide();
+            }
+
+            else
+            {
+                MessageBox.Show("Usuário ou senha inválidos.", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

@@ -23,8 +23,8 @@ namespace SaaS_PDV.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                // Conexão local que depois será trocada pela do Azure
-                optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=SaaS_PDV_DB;Trusted_Connection=True;");
+                // conexão com o banco de dados SQL Server no Azure
+                optionsBuilder.UseSqlServer("Server=tcp:vinniciussantos.database.windows.net,1433;Initial Catalog=database-vinnicius;Persist Security Info=False;User ID=adminvinnicius;Password=Vinni2005@!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
     }
