@@ -43,28 +43,35 @@ namespace SaaS_PDV.UI.Forms
 
         private void btnEntrar_Click(object sender, EventArgs e)
         {
+            string ambiente = txtAmbiente.Text;
             string usuario = txtUsuario.Text;
             string senha = txtSenha.Text;
 
             // validação de campos vazios
-            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(senha))
+            if (string.IsNullOrWhiteSpace(usuario) || string.IsNullOrWhiteSpace(senha) || string.IsNullOrWhiteSpace(ambiente))
             {
                 MessageBox.Show("Por favor, preencha todos os campos.", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Simulação de autenticação (entrada SQL deve ser implementada aqui)
-            if (usuario == "admin" && senha == "1234")
+            // Login usando banco de dados Azure
+            using (var context = new SaaS_PDV.Data.AppDbContext())
             {
-                MainDashboard telaPrincipal = new MainDashboard();
-                telaPrincipal.Show();
-
-                this.Hide();
-            }
-
-            else
-            {
-                MessageBox.Show("Usuário ou senha inválidos.", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                var user = context.Usuarios
+                                  .FirstOrDefault(u => u.Login == usuario && u.Senha == senha);
+                if (user != null)
+                {
+                    // Login bem-sucedido
+                    MessageBox.Show($"Bem-vindo, {user.Nome}!", "Login Bem-Sucedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Aqui você pode abrir a próxima tela do sistema
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+                else
+                {
+                    // Login falhou
+                    MessageBox.Show("Usuário ou senha inválidos.", "Erro de Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

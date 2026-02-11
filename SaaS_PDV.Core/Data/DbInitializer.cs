@@ -10,17 +10,74 @@ Plano de Ação para Implementação do DbInitializer:
 (Estas instruções estão embutidas como comentário neste arquivo para documentação local.)
 */
 
-using Microsoft.EntityFrameworkCore;
-using SaaS_PDV.Data;
 using SaaS_PDV.Core.Models.Entities;
+using SaaS_PDV.Data;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
 
 namespace SaaS_PDV.Core.Data
 {
     public static class DbInitializer
     {
-        
+        public static void Initialize(AppDbContext context)
+        {
+            // 1. Aplica migrações pendentes no Azure automaticamente
+            context.Database.Migrate();
 
+            // 2. Verifica se já existem empresas cadastradas
+            if (context.Empresas.Any())
+            {
+                return; // O banco já tem dados, não faz nada
+            }
 
+            // --- INÍCIO DA PLANTAÇÃO (SEED) ---
+
+            // 3. Criar a Empresa Master (O dono do SaaS)
+            var empresaMaster = new Empresa
+            {
+                Codigo = "EMP-001",
+                NomeFantasia = "SaaS Admin Master",
+                CNPJ = "00.000.000/0001-99",
+                Ativo = true,
+                DataCadastro = DateTime.Now,
+                CriadoPor = "Sistema"
+            };
+            context.Empresas.Add(empresaMaster);
+            context.SaveChanges(); // Salva para gerar o ID que a Filial vai usar
+
+            // 4. Criar a Filial Matriz
+            var filialMatriz = new Filial
+            {
+                // Filial não possui a propriedade 'Codigo' no modelo; usar apenas Nome e referenciar a empresa pelo IdEmpresa
+                Nome = "Matriz Sorocaba",
+                IdEmpresa = empresaMaster.Id
+            };
+            context.Filiais.Add(filialMatriz);
+
+            // 5. Criar o Cargo Administrativo
+            var cargoAdmin = new Cargo
+            {
+                Nome = "Master Admin",
+                Nivel = 99
+            };
+            context.Cargos.Add(cargoAdmin);
+            context.SaveChanges();
+
+            // 6. Criar o seu Usuário de acesso
+            var usuarioMaster = new Usuario
+            {
+                Nome = "Vinnicius Matos",
+                Login = "admin",
+                Senha = "123", // Lembre-se de implementar Hash depois!
+                IsMasterAdmin = true,
+                CargoId = cargoAdmin.Id,
+                FilialId = filialMatriz.Id
+            };
+            context.Usuarios.Add(usuarioMaster);
+
+            // Salva o restante
+            context.SaveChanges();
+        }
     }
 }

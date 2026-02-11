@@ -12,6 +12,9 @@ namespace SaaS_PDV.Core.Models.Entities
         [Key]
         public int Id { get; set; }
 
+        // Código identificador da Filial
+        public string Codigo { get; set; } = string.Empty;
+
         [Required]
         public string Nome { get; set; } = string.Empty;
 

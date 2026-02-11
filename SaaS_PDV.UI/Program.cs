@@ -2,6 +2,7 @@ using System;
 using System.Windows.Forms;
 using SaaS_PDV.Core.Data;
 using SaaS_PDV.UI.Forms;
+using SaaS_PDV.Data; // Added to access AppDbContext
 
 namespace SaaS_PDV.UI
 {
@@ -16,7 +17,11 @@ namespace SaaS_PDV.UI
             // 1. Tenta rodar o Seed do Banco de Dados
             try
             {
-                DbInitializer.Seed();
+                // DbInitializer.Seed(); <-- não existe. Criar um contexto e chamar Initialize
+                using (var context = new AppDbContext())
+                {
+                    DbInitializer.Initialize(context);
+                }
             }
             catch (Exception ex)
             {
