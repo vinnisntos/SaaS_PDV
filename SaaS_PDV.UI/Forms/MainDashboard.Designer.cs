@@ -90,7 +90,7 @@
             button4.Padding = new Padding(15, 0, 0, 0);
             button4.Size = new Size(220, 108);
             button4.TabIndex = 3;
-            button4.Text = "button4";
+            button4.Text = "Funcionários";
             button4.TextAlign = ContentAlignment.MiddleLeft;
             button4.TextImageRelation = TextImageRelation.ImageBeforeText;
             button4.UseVisualStyleBackColor = true;
@@ -109,7 +109,7 @@
             button3.Padding = new Padding(15, 0, 0, 0);
             button3.Size = new Size(220, 108);
             button3.TabIndex = 2;
-            button3.Text = "button3";
+            button3.Text = "Finanças";
             button3.TextAlign = ContentAlignment.MiddleLeft;
             button3.TextImageRelation = TextImageRelation.ImageBeforeText;
             button3.UseVisualStyleBackColor = true;
@@ -128,7 +128,7 @@
             button2.Padding = new Padding(15, 0, 0, 0);
             button2.Size = new Size(220, 108);
             button2.TabIndex = 1;
-            button2.Text = "button2";
+            button2.Text = "Estoque";
             button2.TextAlign = ContentAlignment.MiddleLeft;
             button2.TextImageRelation = TextImageRelation.ImageBeforeText;
             button2.UseVisualStyleBackColor = true;
@@ -147,7 +147,7 @@
             button1.Padding = new Padding(15, 0, 0, 0);
             button1.Size = new Size(220, 108);
             button1.TabIndex = 0;
-            button1.Text = "button1";
+            button1.Text = "Vender";
             button1.TextAlign = ContentAlignment.MiddleLeft;
             button1.TextImageRelation = TextImageRelation.ImageBeforeText;
             button1.UseVisualStyleBackColor = true;
