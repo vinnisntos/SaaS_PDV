@@ -64,8 +64,9 @@ namespace SaaS_PDV.UI.Forms
                     // Login bem-sucedido
                     MessageBox.Show($"Bem-vindo, {user.Nome}!", "Login Bem-Sucedido", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Aqui você pode abrir a próxima tela do sistema
+                    var dashboard = new MainDashboard();
+                    dashboard.Show();
                     this.DialogResult = DialogResult.OK;
-                    this.Close();
                 }
                 else
                 {
