@@ -13,6 +13,6 @@ namespace SaaS_PDV.Core.Models.Entities
         public string Nome { get; set; } = string.Empty;
 
         // nivel de cargo 0 = vendedor, 1 = gerente, 2 = master admin
-        public int Nivel { get; set; } = 0;0
+        public int Nivel { get; set; } = 0;
     }
 }
